@@ -1,0 +1,26 @@
+{
+  "name": "PortHubServer",
+  "version": "1.0.0",
+  "description": "Portfolio builder server",
+  "main": "server.js",
+  "repository": "https://github.com/keugenio/porthubserver.git",
+  "author": "keugenio <kui_eugenio@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
+    "express": "^4.16.2",
+    "html-pdf": "^2.2.0",
+    "mongojs": "^2.4.1",
+    "mongoose": "^4.13.6",
+    "nodemon": "^1.12.5"
+  },
+  "scripts": {
+    "client": "node scripts/start-client.js",
+    "start": "node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "cd client && yarn --production=false && yarn run build"
+  }
+}
