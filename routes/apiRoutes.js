@@ -12,6 +12,14 @@ router.get('/templates/:login', (req, res) => {
   })
 })
 
+router.get('/user/:login', (req, res) =>{
+  db.User.find({login:req.params.login})
+  .then((data) =>{
+    console.log(data);
+    res.json(data);
+  })
+})
+
 router.get('/bob', (req,res) =>{
   res.send("bob");
 })
