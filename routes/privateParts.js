@@ -26,17 +26,11 @@ router.post('/create', ((req, res) => {
 // create html page from input page and update Template collection
 router.post('/resume', ((req, res) => {
     var fs = require('fs');
-    fs.writeFile(__dirname + '/../client/public/temp/resume.html', req.body.html);
+    fs.writeFile('./tmp/resume.html', "bob is here");
     //fs.writeFile('./resume.html', req.body.html);    
-    console.log("html created");
-    db.Template
-    .create({templateName:req.body.currentTemplate, type: req.body.type, lastEdited:Date.now()})
-    .then((response) =>{
-        return db.User.findOneAndUpdate({login:req.body.login}, { $push:{template:response}}, {new:true})
-    })
     .then(() => {
       console.log("template added");
-      res.json("success");
+      res.sendFile('./tmp/resume.html');
     })
     .catch((err) => {
         console.log(err)

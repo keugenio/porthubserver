@@ -15,7 +15,7 @@ router.get('/templates/:login', (req, res) => {
 router.get('/user/:login', (req, res) =>{
   db.User.find({login:req.params.login})
   .then((data) =>{
-    res.json("sucess");
+    res.json("success");
   })
 })
 

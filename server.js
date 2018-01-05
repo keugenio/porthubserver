@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/FakePortHub";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/PortHub";
 const PORT = process.env.PORT || 3003;
 
 
