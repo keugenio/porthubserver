@@ -24,7 +24,7 @@ router.post('/create', ((req, res) => {
   }))
 
 // create html page from input page and update Template collection
-router.post('/resume', ((req, res) => {
+router.get('/resume', ((req, res) => {
     var fs = require('fs');
     fs.writeFile('./tmp/resume.html', "bob is here");
     //fs.writeFile('./resume.html', req.body.html);    
