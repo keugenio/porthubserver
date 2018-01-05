@@ -1,6 +1,9 @@
+
 var db = require("../models");
 const express = require('express');
 const router = express.Router();
+var path = require('path');
+var pdf = require('html-pdf');
 
 // update/create User collections with inputs from InputPage
 router.post('/create', ((req, res) => {
@@ -25,16 +28,32 @@ router.post('/create', ((req, res) => {
 
 // create html page from input page and update Template collection
 router.get('/resume', ((req, res) => {
-    var fs = require('fs');
-    fs.writeFile('./tmp/resume.html', "bob is here");
-    //fs.writeFile('./resume.html', req.body.html);    
-    .then(() => {
-      console.log("template added");
-      res.sendFile('./tmp/resume.html');
-    })
-    .catch((err) => {
-        console.log(err)
+    //var fs = require('fs');
+    try{
+      var fs=require('fs');
+      var pdf = require('html-pdf');
+      
+      var htmlFile = fs.readFileSync(__dirname + '/resume.html', 'utf8');
+
+      var options = { 
+        "format": "Letter",
+        "border": {
+        "top": "0",
+        "bottom":"0",
+        "left": "0",
+        "right":"0"            
+        }
+      };
+
+      pdf.create(htmlFile, options).toStream(function(err, stream){
+        stream.pipe(res);
       });
+
+
+    }
+    catch (err) {
+        console.log(err)
+      }
 }))
 
 // create pdf from html
