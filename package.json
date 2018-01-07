@@ -1,6 +1,7 @@
 {
   "name": "porthubserver",
   "version": "1.0.0",
+  "engines": {"node": "9.3.0"}
   "description": "porthub server",
   "main": "server.js",
   "repository": "git@github.com:keugenio/porthubserver.git",
