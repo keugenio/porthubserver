@@ -20,8 +20,6 @@
     "client": "node scripts/start-client.js",
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "node scripts/build.js",
-    "test": "concurrently \"node --throw-deprecation server.js\" \"npm run client\"",
-    "heroku-postbuild": "cd client && yarn --production=false && yarn run build"
+    "build": "node scripts/build.js"
   }
 }
