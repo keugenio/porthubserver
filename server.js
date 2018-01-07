@@ -14,7 +14,6 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use('/api', require('./routes/apiRoutes'));
-app.use('/', require('./routes/privateParts'));
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {

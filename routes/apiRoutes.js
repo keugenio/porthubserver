@@ -17,29 +17,33 @@ router.get('/templates/:login', (req, res) => {
 router.get('/user/:login', (req, res) =>{
   db.User.find({login:req.params.login})
   .then((data) =>{
-    res.json("success");
+    res.json(data);
   })
 })
 
 // convert pdf from html passed
-router.post('/retrieveResume', ((req, res) => {
+router.get('/retrievePDF/:templateID', ((req, res) => {
   const fs = require('fs');     
   const pdf = require('html-pdf');
-  //var html = req.body.html;
+  let html = '';
+
+  db.Template.find({_id:req.params.templateID})
+  .then((response) =>{
+    console.log("html? ", response[0].html);
+    res.send(response[0].html);
+    // html = response.data.html;
+  })
   
-  //const options = { "format": "Letter","border": {"top": "0","bottom":"0","left": "0","right":"0"},}; 
+  const options = { "format": "Letter","border": {"top": "0","bottom":"0","left": "0","right":"0"},}; 
   
-  // pdf.create("<b>bob</b>", options).toStream(function(err, stream){
+  // pdf.create("boob", options).toStream(function(err, stream){
   //   stream.pipe(res);
   // });
 
-  res.sendFile(__dirname + "/resume.pdf", (err) =>{
-    err ? console.log(err) : console.log("file sent");
-  });
 }));
 
 // test to just send pdf to client
-router.get('/retrieveResume', ((req, res) => {
+router.get('/retrieveResume/:login/:template', ((req, res) => {
   const fs = require('fs');     
 
   res.sendFile(__dirname + "/resume.pdf", (err) =>{
