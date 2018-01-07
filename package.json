@@ -15,5 +15,13 @@
     "mongojs": "^2.4.1",
     "mongoose": "^4.13.6",
     "nodemon": "^1.12.5"
+  },
+    "scripts": {
+    "client": "node scripts/start-client.js",
+    "start": "nodemon server.js",
+    "dev": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
+    "test": "concurrently \"node --throw-deprecation server.js\" \"npm run client\"",
+    "heroku-postbuild": "cd client && yarn --production=false && yarn run build"
   }
 }
