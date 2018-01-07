@@ -7,19 +7,18 @@
   "author": "Kui <kui_eugenio@hotmail.com>",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.17.1",
     "body-parser": "^1.18.2",
-    "concurrently": "^3.5.1",
     "express": "^4.16.2",
     "html-pdf": "^2.2.0",
     "mongojs": "^2.4.1",
     "mongoose": "^4.13.6",
+    "node": "^9.3.0",
     "nodemon": "^1.12.5"
   },
-    "scripts": {
+  "scripts": {
     "client": "node scripts/start-client.js",
     "start": "node server.js",
-    "dev": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "dev": "nodemon server.js",
     "build": "node scripts/build.js",
     "test": "concurrently \"node --throw-deprecation server.js\" \"npm run client\"",
     "heroku-postbuild": "cd client && yarn --production=false && yarn run build"
